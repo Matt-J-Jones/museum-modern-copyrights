@@ -30,6 +30,7 @@ ExportedObj/
 *.pdb
 *.meta
 *.prefab
+*.cubemap
 
 # Unity3D generated meta files
 *.pidb.meta
