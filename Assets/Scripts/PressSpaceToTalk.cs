@@ -5,6 +5,10 @@ using UnityEngine;
 public class PressSpaceToTalk : MonoBehaviour
 {
     public bool PlayerInTrigger = false;
+    public bool seenCutscene = false;
+    public GameObject playerCam;
+    public GameObject voxCam;
+    public GameObject activeExit;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,8 +18,15 @@ public class PressSpaceToTalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayerInTrigger && Input.GetKeyDown(KeyCode.Space)){
-            Debug.Log("Trigger Activated");
+        if(PlayerInTrigger && Input.GetKeyDown(KeyCode.Space) && !seenCutscene){
+          playerCam.SetActive(false);
+          voxCam.SetActive(true);  
+          seenCutscene = true;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space) && seenCutscene && activeExit.activeSelf){
+          playerCam.SetActive(true);
+          voxCam.SetActive(false); 
         }
     }
 
