@@ -833,7 +833,7 @@ if (standard ? Input.GetButtonDown(jumpBtn) : customInputSystem.JumpPressed())
                 controller = gameObject.GetComponent<CharacterController>();
             }
             Vector3 pos = transform.position + controller.center;
-            GizmoUtilities.DrawWireCapsule(pos, Quaternion.identity, controller.radius + controller.skinWidth, controller.height + (2*controller.skinWidth), Color.cyan);
+            // GizmoUtilities.DrawWireCapsule(pos, Quaternion.identity, controller.radius + controller.skinWidth, controller.height + (2*controller.skinWidth), Color.cyan);
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position + new Vector3(-controller.radius, controller.stepOffset,0), transform.position + new Vector3(controller.radius, controller.stepOffset, 0));
             Gizmos.DrawLine(transform.position + new Vector3(0, controller.stepOffset, -controller.radius), transform.position + new Vector3(0, controller.stepOffset, controller.radius));
