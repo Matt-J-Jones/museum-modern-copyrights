@@ -35,15 +35,24 @@ namespace Picturesque.Darkbringer
         private Texture3D vTex;
         private Texture2D v2DTex;
         public bool clearNextUpdate;
+        private bool isInitialized = false;
 
-        void Awake()
+        private void OnEnable()
+        {
+            InitializeResources();
+        }
+
+        private void InitializeResources()
         {
             if (sha != null)
             {
-                
                 mat = new Material(sha);
                 mat.SetTexture("_BayerTex", bayerTexture);
             }
+
+            // Additional resource initialization logic
+
+            isInitialized = true;
         }
 
         void OnDisable()
@@ -58,6 +67,11 @@ namespace Picturesque.Darkbringer
         // Called by the camera to apply the image effect
         public void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
+            if (!isInitialized)
+            {
+                InitializeResources();
+            }
+            
             if (sha == null || flatLut == null)
             {
                 Graphics.Blit(source, destination);
